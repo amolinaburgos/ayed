@@ -1,0 +1,207 @@
+#Unidad 2 - POO Python Tkinter & SQLiteInstituto Superior de Formación Técnica Nº 151		  
+Carrera: Analista en Sistemas
+X Año.  Algoritmos y Estructuras de Datos X.
+Trabajo Práctico Nº2
+Unidad X3- Python Tkinter & SQLite
+Modalidad: Semi -Presencial
+Estratégica Didáctica: Trabajo individual.
+Metodología de Desarrollo:  Det. docente
+Metodología de Corrección: Via Classroom.
+Carácter de Trabajo: Obligatorio – Con Nota
+Fecha Entrega: A confirmar por el Docente.
+
+
+INTRODUCCION A PYTHON.
+
+
+     1.  Python TKinter
+
+              Marco Teórico:
+Que entiende por GUI
+GUI es el acrónimo de Graphical User Interface (Interfaz Gráfica de Usuario). Es un entorno visual compuesto por elementos interactivos (botones, ventanas, menús, campos de texto) que permite a un usuario comunicarse con un programa informático mediante un dispositivo apuntador (como el ratón) o entradas táctiles, en lugar de ingresar comandos en modo texto (CUI/CLI).
+
+
+Describir 3 Framework de GUI para Python, Adicionalmente que se usen en C++ 
+Existen bibliotecas multiplataforma cuya lógica central o motor fue escrito en C++ y cuentan con bindings oficiales o nativos para Python:
+Qt (PyQt / PySide en Python | Qt Framework en C++): Es el estándar industrial para aplicaciones de escritorio avanzadas. Ofrece un conjunto de herramientas completas para desarrollo multiplataforma.
+wxWidgets (wxPython en Python | wxWidgets en C++): Un framework enfocado en imitar el aspecto y comportamiento nativo de cada sistema operativo (Windows, macOS, Linux) usando las APIs internas de cada plataforma.
+FLTK (pyFLTK en Python | FLTK en C++): Fast Light Toolkit. Un framework ligero enfocado en consumir pocos recursos y ofrecer compilación rápida para herramientas técnicas o de bajo rendimiento.
+
+
+¿Qué diferencia tienen los módulos TK y TTK?
+TK (tkinter): Contiene los widgets clásicos de Tkinter. Se renderizan mediante primitivas de dibujo propias, lo que les da una apariencia anticuada similar a los sistemas de los años 90. Sus propiedades visuales (color de fondo, borde) se modifican directamente como argumentos del widget (ej. bg="red").  TTK (tkinter.ttk):
+Tk Themed Widgets introducido en Tk 8.5. Separa el comportamiento funcional del diseño visual. Utiliza el motor de estilos del sistema operativo para dar un aspecto nativo y moderno. No soporta la modificación directa de ciertos atributos visuales por argumento, sino que requiere la configuración de temas y objetos ttk.Style()
+
+
+
+
+Que es un Widget, dar 5 ejemplos
+Un Widget (contracción de window y gadget) es un componente gráfico interactivo o de control dentro de una interfaz. Permite mostrar información o recibir entradas del usuario.
+
+5 Ejemplos comunes en Tkinter:
+Button: Botón ejecutable de acciones tras hacer clic.
+Label: Etiqueta de texto o imagen estática para mostrar información.
+Entry: Campo de texto de una sola línea para entrada de datos.
+Checkbutton: Casilla de verificación para selecciones de tipo verdadero/falso.
+Frame: Contenedor rectangular utilizado para agrupar y organizar otros widgets.
+
+
+¿Explicar el Widget Notebook en Tkinter?
+El widget ttk.Notebook permite gestionar una interfaz organizada en pestañas (tabs). Actúa como un contenedor donde cada pestaña es un Frame independiente. Permite alternar la visualización de diferentes páginas o secciones sin cambiar de ventana.
+
+
+Como implemento menús en Python con Tkinter.
+Los menús se crean instanciando el widget tk.Menu. La barra principal se asigna a la ventana mediante la propiedad config(menu=...), y los submenús emergentes (drop-down) se añaden usando add_cascade() y add_command().
+
+
+¿Se puede realizar interfaces graficas en Python con Paradigma estructurado y objetos?
+Sí, con ambos. 
+Paradigma Estructurado/Procedural: Adecuado para scripts o GUIs muy simples. Los widgets y funciones callback se definen en el ámbito global o mediante funciones secuenciales.
+Paradigma Orientado a Objetos (POO): Es la práctica recomendada para aplicaciones reales. Se hereda de tk.Tk o ttk.Frame, encapsulado el estado de la aplicación (variables, eventos y lógica) dentro de clases para evitar variables globales y facilitar el mantenimiento.
+
+
+Describir los 3 métodos para Colocar Widgets en una GUI con TKinter en Python.
+
+
+
+Método 
+Descripción 
+Uso Recomendado 
+pack() 
+Organiza los widgets alineándolos vertical u horizontalmente en los bordes de la ventana principal o contenedores (TOP, BOTTOM, LEFT, RIGHT).
+Diseños simples, barras de herramientas o apilado secuencial.
+grid() 
+Organiza los widgets en una tabla bidimensional compuesta por filas (row) y columnas (column).
+Formularios complejos y estructurados. Es el más flexible y usado.
+place()
+Posiciona los widgets usando coordenadas absolutas o relativas (X,Y) fijas en píxeles.
+Diseños fijos donde la ventana no requiere redimensionarse.
+
+
+¿Como maneja los eventos en TKinter?, de ser posible ampliar en la Web con “Bind”.
+Tkinter gestiona eventos mediante un bucle principal de eventos (root.mainloop()). Existen dos formas de vincular eventos a código:
+Atributo command: Presente en widgets como Button. Acepta una función que se ejecuta al interactuar de forma estándar (hacer clic).
+Método .bind('<Evento>', función_callback): Permite capturar eventos específicos del sistema operativo (teclado, ratón, foco) en cualquier widget. 
+
+Sintaxis general: widget.bind(secuencia_evento, callback)
+Eventos comunes para bind:
+ <Button-1>: Clic izquierdo.
+<Button-3>: Clic derecho.
+<Double-Button-1>: Doble clic izquierdo.
+<Return>: Tecla Enter.
+<FocusIn> / <FocusOut>: Obtención/Pérdida de foco del elemento.
+
+     2.  Python - SQLite
+
+              Marco Teórico:
+¿Qué es SQLite, como se integra a Python?
+SQLite es un sistema de gestión de bases de datos relacionales (RDBMS) contenido en una biblioteca en C. A diferencia de motores client-server (como PostgreSQL o MySQL), SQLite no requiere un proceso de servidor independiente; la base de datos completa se almacena en un único archivo de disco.  Integración: Python incluye el módulo sqlite3 de forma nativa en su biblioteca estándar (implementa la especificación DB-API 2.0). No requiere instalación de paquetes externos mediante pip.
+
+
+¿Como conecto a una base de datos SQLite desde Python?
+Para conectar a SQLite se utiliza la función sqlite3.connect(). Si la base de datos no existe en el directorio especificado, SQLite la crea automáticamente.
+>>> import sqlite3
+>>> conexion = sqlite3.connect("mi_base_de_datos.db")
+>>> conexion.close()
+
+
+¿Como ejecuto una sentencia SQL en Python + SQLite?
+Para ejecutar sentencias SQL se requiere crear un objeto Cursor mediante la conexión. El cursor actúa como la estructura que envía comandos a la base de datos y recupera resultados.
+
+>>> import sqlite3 
+>>> conexion = sqlite3.connect("mi_base_de_datos.db")
+	cursor = conexion.cursor()
+	cursor.execute("CREATE TABLE IF NOT EXISTS prueba (id INTEGER PRIMARY KEY, nombre TEXT)")
+	conexion.commit()
+	conexion.close()
+
+
+¿Como creo una Tabla en Python – SQLite?
+>>> import sqlite3
+>>> conexion = sqlite3.connect("empresa.db")
+	... cursor = conexion.cursor()
+	... cursor.execute (""" ... CREATE TABLE IF NOT EXISTS empleados ( ...     id INTEGER PRIMARY KEY
+	AUTOINCREMENT, ...     nombre TEXT NOT NULL, ...     puesto TEXT NOT NULL, ...     salario REAL ... )
+	... """) 
+	… conexion.commit()
+	… conexion.close()
+
+
+Dar ejemplo de Consultas (Select), que devuelvan todos los Registros de una tabla.
+Para obtener todos los registros devueltos por un SELECT, se utiliza el método .fetchall().
+
+>>> import sqlite3
+	... conexion = sqlite3.connect("empresa.db")
+	... cursor = conexion.cursor() 
+	... cursor.execute("SELECT * FROM empleados")
+	registros = cursor.fetchall()  # Devuelve una lista de tuplas
+	
+	... for fila in registros:
+	...     print(fila)
+	... conexion.close()
+
+
+Dar ejemplo de Consultas (Select), que devuelva un Registro de una tabla.
+Para recuperar una única fila se utiliza el método .fetchone(). Si la consulta arroja múltiples coincidencias, .fetchone() retorna la primera; si no hay resultados, retorna None.
+
+import sqlite3
+	... conexion = sqlite3.connect("empresa.db")
+	... cursor = conexion.cursor()
+	# Consulta parametrizada utilizando ? para evitar SQL Injection
+	... id_buscado = 1
+	... cursor.execute("SELECT * FROM empleados WHERE id = ?", (id_buscado,)) 
+	... registro = cursor.fetchone() 
+	... if registro: 
+	… print("Empleado encontrado:", registro)
+	... else: 
+	... print("No existe un registro con ese ID.") 
+	... conexion.close()   
+
+
+Dar ejemplos de insert, delete y Update en Python – SQLite
+Nota de seguridad: Se utiliza la parametrización mediante tuplas (?, ?) en lugar de formateo de cadenas con f-strings para prevenir vulnerabilidades de Inyección SQL.
+
+>>> import sqlite3 …
+... conexion = sqlite3.connect("empresa.db") 
+... cursor = conexion.cursor() …
+ # 1. INSERT - Insertar registros …
+ nuevo_empleado = ("Ana Gómez", "Desarrolladora", 4500.00) ... 
+cursor.execute("INSERT INTO empleados (nombre, puesto, salario) VALUES (?, ?, ?)", nuevo_empleado) ... conexion.commit() ... 
+print(f"Registro insertado con ID: {cursor.lastrowid}") ... ... 
+# 2. UPDATE - Actualizar datos de un registro existente ... 
+nuevo_salario = 4800.00 ... 
+empleado_id = 1 ... 
+cursor.execute("UPDATE empleados SET salario = ? WHERE id = ?", (nuevo_salario, empleado_id)) ... conexion.commit() ... 
+print(f"Filas modificadas: {cursor.rowcount}") ... ... 
+# 3. DELETE - Eliminar un registro …
+ id_a_eliminar = 1 ... 
+cursor.execute("DELETE FROM empleados WHERE id = ?", (id_a_eliminar,)) …
+ conexion.commit() ... print(f"Filas eliminadas: {cursor.rowcount}") ... …
+conexion.close()
+
+
+
+
+
+    3.  Marco Practico Integrado Python - SQLite
+
+Marco Practico: Realizar en Python
+
+3.1 Construir una calculadora (suma, resta, multiplicar y dividir)
+
+
+3.2 Construir una APP que permita administrar los pedidos de servicio técnico a un “Repair Center”.
+
+	3.2.1 Ingresar Apellido y Nombre del Cliente.
+              3.2.2 Ingresar la dirección (calle y altura)
+	3.2.3 Ingresar el Inconveniente
+	3.2.4 Asignar un Técnico
+	3.2.5 Agendar la Visita fecha y hora.
+
+
+3.3 Para el Ejercicio anterior agrega runa pantalla inicial de Logín (usuario y clave para Ingresar)
+
+
+
+
+La Cátedra.
